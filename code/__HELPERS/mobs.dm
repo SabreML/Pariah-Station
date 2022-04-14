@@ -87,6 +87,10 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	if(!GLOB.pod_hair_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
+	//PARIAH EDIT ADDITION
+	if(!GLOB.skrell_headtails_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/skrell_headtails, GLOB.skrell_headtails_list)
+	//PARIAH EDIT END
 
 	//For now we will always return none for tail_human and ears.
 	return(list(
@@ -108,6 +112,7 @@
 		"moth_markings" = pick(GLOB.moth_markings_list),
 		"tail_monkey" = "None",
 		"pod_hair" = pick(GLOB.pod_hair_list),
+		"skrell_headtails" = pick(GLOB.skrell_headtails_list), //PARAIH EDIT
 	))
 
 /proc/random_hairstyle(gender)

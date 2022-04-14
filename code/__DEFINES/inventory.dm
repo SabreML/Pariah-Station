@@ -137,6 +137,10 @@
 #define CLOTHING_SNOUTED_VARIATION (1<<3)
 //PARIAH EDIT END
 
+//PARIAH ADDITION
+///Has a sprite for skrell heads
+#define CLOTHING_SKRELL_VARIATION (1<<3)
+
 //flags for covering body parts
 #define GLASSESCOVERSEYES (1<<0)
 #define MASKCOVERSEYES (1<<1) // get rid of some of the other stupidness in these flags

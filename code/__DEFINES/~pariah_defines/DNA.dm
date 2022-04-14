@@ -17,3 +17,6 @@
 
 #define MANDATORY_FEATURE_LIST list("flavor_text" = "")
 
+
+//Species organs
+#define ORGAN_SLOT_EXTERNAL_HEADTAILS "headtails"

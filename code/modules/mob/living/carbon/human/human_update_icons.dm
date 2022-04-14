@@ -409,6 +409,9 @@ There are several things that need to be remembered:
 		if(dna.species.bodytype & BODYTYPE_SNOUTED)
 			if(worn_item.supports_variations_flags & CLOTHING_SNOUTED_VARIATION)
 				icon_file = head.worn_icon_snouted || SNOUTED_HEAD_FILE
+
+		if((dna.species.bodytype & BODYTYPE_SKRELL) && (worn_item.supports_variations_flags & CLOTHING_SKRELL_VARIATION))
+			icon_file = SKRELL_HEAD_FILE
 		//PARIAH EDIT END
 
 		if(!(icon_exists(icon_file, RESOLVE_ICON_STATE(worn_item))))
