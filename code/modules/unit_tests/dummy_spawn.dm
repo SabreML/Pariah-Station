@@ -15,11 +15,11 @@
 
 /datum/unit_test/dummy_spawn_outfit/Run()
 	var/mob/living/carbon/human/dummy/lad = allocate(/mob/living/carbon/human/dummy)
+	log_world(CONFIG_GET(flag/allow_ai))
 	for(var/datum/job/one_two_three as anything in subtypesof(/datum/job))
 		var/datum/job/can_you_hear_this = SSjob.GetJobType(one_two_three)
 		if(!can_you_hear_this)
 			log_world("Job type [one_two_three] could not be retrieved from SSjob")
-			log_world(CONFIG_GET(flag/allow_ai))
 			continue
 		lad.job = can_you_hear_this
 		lad.dress_up_as_job(can_you_hear_this, TRUE)
