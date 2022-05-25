@@ -15,7 +15,6 @@
 
 /datum/unit_test/dummy_spawn_outfit/Run()
 	var/mob/living/carbon/human/dummy/lad = allocate(/mob/living/carbon/human/dummy)
-	log_world(CONFIG_GET(flag/allow_ai))
 	for(var/datum/job/one_two_three as anything in subtypesof(/datum/job))
 		var/datum/job/can_you_hear_this = SSjob.GetJobType(one_two_three)
 		if(!can_you_hear_this)
