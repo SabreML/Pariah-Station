@@ -199,3 +199,6 @@ Temporary Items
 
 # Autowiki
 /tools/autowiki/node_modules
+
+# OpenDream compatibility stuff
+pariah.json
