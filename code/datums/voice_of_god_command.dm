@@ -259,7 +259,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 /datum/voice_of_god_command/who_are_you/execute(list/listeners, mob/living/user, power_multiplier = 1, message)
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
-		addtimer(CALLBACK(target, /atom/movable/proc/say, target.real_name), 0.5 SECONDS * iteration)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), target.real_name), 0.5 SECONDS * iteration)
 		iteration++
 
 /// This command forces the listeners to say the user's name
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 /datum/voice_of_god_command/say_my_name/execute(list/listeners, mob/living/user, power_multiplier = 1, message)
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
-		addtimer(CALLBACK(target, /atom/movable/proc/say, user.name), 0.5 SECONDS * iteration)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), user.name), 0.5 SECONDS * iteration)
 		iteration++
 
 /// This command forces the listeners to say "Who's there?".
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 /datum/voice_of_god_command/knock_knock/execute(list/listeners, mob/living/user, power_multiplier = 1, message)
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
-		addtimer(CALLBACK(target, /atom/movable/proc/say, "Who's there?"), 0.5 SECONDS * iteration)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "Who's there?"), 0.5 SECONDS * iteration)
 		iteration++
 
 /// This command forces silicon listeners to state all their laws.
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(voice_of_god_commands, init_voice_of_god_commands())
 	var/iteration = 1
 	for(var/mob/living/target as anything in listeners)
 		if(prob(25))
-			addtimer(CALLBACK(target, /atom/movable/proc/say, "HOW HIGH?!!"), 0.5 SECONDS * iteration)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, say), "HOW HIGH?!!"), 0.5 SECONDS * iteration)
 		else
 			addtimer(CALLBACK(target, /mob/living/.proc/emote, "jump"), 0.5 SECONDS * iteration)
 		iteration++

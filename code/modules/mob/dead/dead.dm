@@ -18,7 +18,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	prepare_huds()
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
-		add_verb(src, /mob/dead/proc/server_hop)
+		add_verb(src, TYPE_PROC_REF(/mob/dead, server_hop))
 	set_focus(src)
 	become_hearing_sensitive()
 	return INITIALIZE_HINT_NORMAL
@@ -64,7 +64,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	var/pick
 	switch(length(csa))
 		if(0)
-			remove_verb(src, /mob/dead/proc/server_hop)
+			remove_verb(src, TYPE_PROC_REF(/mob/dead, server_hop))
 			to_chat(src, span_notice("Server Hop has been disabled."))
 		if(1)
 			pick = csa[1]

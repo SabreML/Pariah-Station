@@ -4,280 +4,280 @@ GLOBAL_LIST_INIT(admin_verbs_default, world.AVerbsDefault())
 GLOBAL_PROTECT(admin_verbs_default)
 /world/proc/AVerbsDefault()
 	return list(
-	/client/proc/deadmin, /*destroys our own admin datum so we can play as a regular player*/
-	/client/proc/cmd_admin_say, /*admin-only ooc chat*/
-	/client/proc/cmd_loud_admin_say, /*ditto except its annoying - PARIAH EDIT ADDITION - ADMIN*/
-	/client/proc/hide_verbs, /*hides all our adminverbs*/
-	/client/proc/debug_variables, /*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
-	/client/proc/dsay, /*talk in deadchat using our ckey/fakekey*/
-	/client/proc/investigate_show, /*various admintools for investigation. Such as a singulo grief-log*/
-	/client/proc/secrets,
-	/client/proc/reload_admins,
-	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
-	/client/proc/cmd_admin_pm_context, /*right-click adminPM interface*/
-	/client/proc/cmd_admin_pm_panel, /*admin-pm list*/
-	/client/proc/stop_sounds,
-	/client/proc/mark_datum_mapview,
-	/client/proc/tag_datum_mapview,
-	/client/proc/debugstatpanel,
-	/client/proc/fix_air, /*resets air in designated radius to its default atmos composition*/
-	/client/proc/requests
+	TYPE_PROC_REF(/client, deadmin), /*destroys our own admin datum so we can play as a regular player*/
+	TYPE_PROC_REF(/client, cmd_admin_say), /*admin-only ooc chat*/
+	TYPE_PROC_REF(/client, cmd_loud_admin_say), /*ditto except its annoying - PARIAH EDIT ADDITION - ADMIN*/
+	TYPE_PROC_REF(/client, hide_verbs), /*hides all our adminverbs*/
+	TYPE_PROC_REF(/client, debug_variables), /*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
+	TYPE_PROC_REF(/client, dsay), /*talk in deadchat using our ckey/fakekey*/
+	TYPE_PROC_REF(/client, investigate_show), /*various admintools for investigation. Such as a singulo grief-log*/
+	TYPE_PROC_REF(/client, secrets),
+	TYPE_PROC_REF(/client, reload_admins),
+	TYPE_PROC_REF(/client, reestablish_db_connection), /*reattempt a connection to the database*/
+	TYPE_PROC_REF(/client, cmd_admin_pm_context), /*right-click adminPM interface*/
+	TYPE_PROC_REF(/client, cmd_admin_pm_panel), /*admin-pm list*/
+	TYPE_PROC_REF(/client, stop_sounds),
+	TYPE_PROC_REF(/client, mark_datum_mapview),
+	TYPE_PROC_REF(/client, tag_datum_mapview),
+	TYPE_PROC_REF(/client, debugstatpanel),
+	TYPE_PROC_REF(/client, fix_air), /*resets air in designated radius to its default atmos composition*/
+	TYPE_PROC_REF(/client, requests)
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
 /world/proc/AVerbsAdmin()
 	return list(
-	/client/proc/invisimin, /*allows our mob to go invisible/visible*/
-// /datum/admins/proc/show_traitor_panel, /*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
-	/datum/admins/proc/show_lag_switch_panel,
+	TYPE_PROC_REF(/client, invisimin), /*allows our mob to go invisible/visible*/
+// TYPE_PROC_REF(/datum/admins, show_traitor_panel), /*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
+	TYPE_PROC_REF(/datum/admins, show_lag_switch_panel),
 	/datum/admins/proc/show_player_panel, /*shows an interface for individual players, with various links (links require additional flags*/
 	/datum/verbs/menu/Admin/verb/playerpanel,
-	/client/proc/game_panel, /*game panel, allows to change game-mode etc*/
-	/client/proc/check_ai_laws, /*shows AI and borg laws*/
-	/client/proc/ghost_pool_protection, /*opens a menu for toggling ghost roles*/
-	/datum/admins/proc/toggleooc, /*toggles ooc on/off for everyone*/
-	/datum/admins/proc/togglelooc, /*toggles looc on/off for everyone*/
-	/datum/admins/proc/toggleoocdead, /*toggles ooc on/off for everyone who is dead*/
-	/datum/admins/proc/toggleenter, /*toggles whether people can join the current game*/
-	/datum/admins/proc/toggleguests, /*toggles whether guests can join the current game*/
-	/datum/admins/proc/announce, /*priority announce something to all clients.*/
-	/datum/admins/proc/set_admin_notice, /*announcement all clients see when joining the server.*/
-	/client/proc/admin_ghost, /*allows us to ghost/reenter body at will*/
-	/client/proc/toggle_view_range, /*changes how far we can see*/
-	/client/proc/getserverlogs, /*for accessing server logs*/
-	/client/proc/getcurrentlogs, /*for accessing server logs for the current round*/
-	/client/proc/cmd_admin_subtle_message, /*send a message to somebody as a 'voice in their head'*/
-	/client/proc/cmd_admin_headset_message, /*send a message to somebody through their headset as CentCom*/
-	/client/proc/cmd_admin_delete, /*delete an instance/object/mob/etc*/
-	/client/proc/cmd_admin_check_contents, /*displays the contents of an instance*/
-	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
-	/client/proc/check_antagonists, /*shows all antags*/
-	/datum/admins/proc/access_news_network, /*allows access of newscasters*/
-	/client/proc/jumptocoord, /*we ghost and jump to a coordinate*/
-	/client/proc/Getmob, /*teleports a mob to our location*/
-	/client/proc/Getkey, /*teleports a mob with a certain ckey to our location*/
-// /client/proc/sendmob, /*sends a mob somewhere*/ -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage
-	/client/proc/jumptoarea,
-	/client/proc/jumptokey, /*allows us to jump to the location of a mob with a certain ckey*/
-	/client/proc/jumptomob, /*allows us to jump to a specific mob*/
-	/client/proc/jumptoturf, /*allows us to jump to a specific turf*/
-	/client/proc/admin_call_shuttle, /*allows us to call the emergency shuttle*/
-	/client/proc/admin_cancel_shuttle, /*allows us to cancel the emergency shuttle, sending it back to centcom*/
-	/client/proc/admin_disable_shuttle, /*allows us to disable the emergency shuttle admin-wise so that it cannot be called*/
-	/client/proc/admin_enable_shuttle,  /*undoes the above*/
-	/client/proc/cmd_admin_direct_narrate, /*send text directly to a player with no padding. Useful for narratives and fluff-text*/
-	/client/proc/cmd_admin_world_narrate, /*sends text to all players with no padding*/
-	/client/proc/cmd_admin_local_narrate, /*sends text to all mobs within view of atom*/
-	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/cmd_change_command_name,
-	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
-	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
-	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
-	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
-	/client/proc/respawn_character,
-	/datum/admins/proc/open_borgopanel,
-	/datum/admins/proc/view_all_circuits,
-	/datum/admins/proc/view_all_sdql_spells,
-	/datum/admins/proc/known_alts_panel,
-	/datum/admins/proc/paintings_manager,
-	/datum/admins/proc/display_tags,
+	TYPE_PROC_REF(/client, game_panel), /*game panel, allows to change game-mode etc*/
+	TYPE_PROC_REF(/client, check_ai_laws), /*shows AI and borg laws*/
+	TYPE_PROC_REF(/client, ghost_pool_protection), /*opens a menu for toggling ghost roles*/
+	TYPE_PROC_REF(/datum/admins, toggleooc), /*toggles ooc on/off for everyone*/
+	TYPE_PROC_REF(/datum/admins, togglelooc), /*toggles looc on/off for everyone*/
+	TYPE_PROC_REF(/datum/admins, toggleoocdead), /*toggles ooc on/off for everyone who is dead*/
+	TYPE_PROC_REF(/datum/admins, toggleenter), /*toggles whether people can join the current game*/
+	TYPE_PROC_REF(/datum/admins, toggleguests), /*toggles whether guests can join the current game*/
+	TYPE_PROC_REF(/datum/admins, announce), /*priority announce something to all clients.*/
+	TYPE_PROC_REF(/datum/admins, set_admin_notice), /*announcement all clients see when joining the server.*/
+	TYPE_PROC_REF(/client, admin_ghost), /*allows us to ghost/reenter body at will*/
+	TYPE_PROC_REF(/client, toggle_view_range), /*changes how far we can see*/
+	TYPE_PROC_REF(/client, getserverlogs), /*for accessing server logs*/
+	TYPE_PROC_REF(/client, getcurrentlogs), /*for accessing server logs for the current round*/
+	TYPE_PROC_REF(/client, cmd_admin_subtle_message), /*send a message to somebody as a 'voice in their head'*/
+	TYPE_PROC_REF(/client, cmd_admin_headset_message), /*send a message to somebody through their headset as CentCom*/
+	TYPE_PROC_REF(/client, cmd_admin_delete), /*delete an instance/object/mob/etc*/
+	TYPE_PROC_REF(/client, cmd_admin_check_contents), /*displays the contents of an instance*/
+	TYPE_PROC_REF(/client, centcom_podlauncher),/*Open a window to launch a Supplypod and configure it or it's contents*/
+	TYPE_PROC_REF(/client, check_antagonists), /*shows all antags*/
+	TYPE_PROC_REF(/datum/admins, access_news_network), /*allows access of newscasters*/
+	TYPE_PROC_REF(/client, jumptocoord), /*we ghost and jump to a coordinate*/
+	TYPE_PROC_REF(/client, Getmob), /*teleports a mob to our location*/
+	TYPE_PROC_REF(/client, Getkey), /*teleports a mob with a certain ckey to our location*/
+// TYPE_PROC_REF(/client, sendmob), /*sends a mob somewhere*/ -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage
+	TYPE_PROC_REF(/client, jumptoarea),
+	TYPE_PROC_REF(/client, jumptokey), /*allows us to jump to the location of a mob with a certain ckey*/
+	TYPE_PROC_REF(/client, jumptomob), /*allows us to jump to a specific mob*/
+	TYPE_PROC_REF(/client, jumptoturf), /*allows us to jump to a specific turf*/
+	TYPE_PROC_REF(/client, admin_call_shuttle), /*allows us to call the emergency shuttle*/
+	TYPE_PROC_REF(/client, admin_cancel_shuttle), /*allows us to cancel the emergency shuttle, sending it back to centcom*/
+	TYPE_PROC_REF(/client, admin_disable_shuttle), /*allows us to disable the emergency shuttle admin-wise so that it cannot be called*/
+	TYPE_PROC_REF(/client, admin_enable_shuttle),  /*undoes the above*/
+	TYPE_PROC_REF(/client, cmd_admin_direct_narrate), /*send text directly to a player with no padding. Useful for narratives and fluff-text*/
+	TYPE_PROC_REF(/client, cmd_admin_world_narrate), /*sends text to all players with no padding*/
+	TYPE_PROC_REF(/client, cmd_admin_local_narrate), /*sends text to all mobs within view of atom*/
+	TYPE_PROC_REF(/client, cmd_admin_create_centcom_report),
+	TYPE_PROC_REF(/client, cmd_change_command_name),
+	TYPE_PROC_REF(/client, cmd_admin_check_player_exp), /* shows players by playtime */
+	TYPE_PROC_REF(/client, toggle_combo_hud), // toggle display of the combination pizza antag and taco sci/med/eng hud
+	TYPE_PROC_REF(/client, toggle_AI_interact), /*toggle admin ability to interact with machines as an AI*/
+	TYPE_PROC_REF(/datum/admins, open_shuttlepanel), /* Opens shuttle manipulator UI */
+	TYPE_PROC_REF(/client, respawn_character),
+	TYPE_PROC_REF(/datum/admins, open_borgopanel),
+	TYPE_PROC_REF(/datum/admins, view_all_circuits),
+	TYPE_PROC_REF(/datum/admins, view_all_sdql_spells),
+	TYPE_PROC_REF(/datum/admins, known_alts_panel),
+	TYPE_PROC_REF(/datum/admins, paintings_manager),
+	TYPE_PROC_REF(/datum/admins, display_tags),
 	)
-GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
+GLOBAL_LIST_INIT(admin_verbs_ban, list(TYPE_PROC_REF(/client, unban_panel), TYPE_PROC_REF(/client, ban_panel), TYPE_PROC_REF(/client, stickybanpanel)))
 GLOBAL_PROTECT(admin_verbs_ban)
-GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound, /client/proc/play_direct_mob_sound, /client/proc/play_sound, /client/proc/set_round_end_sound))
+GLOBAL_LIST_INIT(admin_verbs_sounds, list(TYPE_PROC_REF(/client, play_local_sound), TYPE_PROC_REF(/client, play_direct_mob_sound), TYPE_PROC_REF(/client, play_sound), TYPE_PROC_REF(/client, set_round_end_sound)))
 GLOBAL_PROTECT(admin_verbs_sounds)
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
-	/client/proc/cmd_select_equipment,
-	/client/proc/cmd_admin_gib_self,
-	/client/proc/drop_bomb,
-	/client/proc/set_dynex_scale,
-	/client/proc/drop_dynex_bomb,
-	/client/proc/cinematic,
-	/client/proc/summon_ert,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/object_say,
-	/client/proc/toggle_random_events,
-	/client/proc/set_ooc,
-	/client/proc/reset_ooc,
-	/client/proc/forceEvent,
-	/client/proc/admin_change_sec_level,
-	/client/proc/toggle_nuke,
-	/client/proc/run_weather,
-	/client/proc/mass_zombie_infection,
-	/client/proc/mass_zombie_cure,
-	/client/proc/polymorph_all,
-	/client/proc/show_tip,
-	/client/proc/smite,
-	/client/proc/admin_away,
-	/client/proc/add_mob_ability,
-	/datum/admins/proc/station_traits_panel,
+	TYPE_PROC_REF(/client, cmd_select_equipment),
+	TYPE_PROC_REF(/client, cmd_admin_gib_self),
+	TYPE_PROC_REF(/client, drop_bomb),
+	TYPE_PROC_REF(/client, set_dynex_scale),
+	TYPE_PROC_REF(/client, drop_dynex_bomb),
+	TYPE_PROC_REF(/client, cinematic),
+	TYPE_PROC_REF(/client, summon_ert),
+	TYPE_PROC_REF(/client, cmd_admin_add_freeform_ai_law),
+	TYPE_PROC_REF(/client, object_say),
+	TYPE_PROC_REF(/client, toggle_random_events),
+	TYPE_PROC_REF(/client, set_ooc),
+	TYPE_PROC_REF(/client, reset_ooc),
+	TYPE_PROC_REF(/client, forceEvent),
+	TYPE_PROC_REF(/client, admin_change_sec_level),
+	TYPE_PROC_REF(/client, toggle_nuke),
+	TYPE_PROC_REF(/client, run_weather),
+	TYPE_PROC_REF(/client, mass_zombie_infection),
+	TYPE_PROC_REF(/client, mass_zombie_cure),
+	TYPE_PROC_REF(/client, polymorph_all),
+	TYPE_PROC_REF(/client, show_tip),
+	TYPE_PROC_REF(/client, smite),
+	TYPE_PROC_REF(/client, admin_away),
+	TYPE_PROC_REF(/client, add_mob_ability),
+	TYPE_PROC_REF(/datum/admins, station_traits_panel),
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(TYPE_PROC_REF(/datum/admins, spawn_atom), TYPE_PROC_REF(/datum/admins, podspawn_atom), TYPE_PROC_REF(/datum/admins, spawn_cargo), TYPE_PROC_REF(/datum/admins, spawn_objasmob), TYPE_PROC_REF(/client, respawn_character), TYPE_PROC_REF(/datum/admins, beaker_panel)))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 GLOBAL_PROTECT(admin_verbs_server)
 /world/proc/AVerbsServer()
 	return list(
-	/datum/admins/proc/startnow,
-	/datum/admins/proc/restart,
-	/datum/admins/proc/end_round,
-	/datum/admins/proc/delay,
-	/datum/admins/proc/toggleaban,
-	/client/proc/everyone_random,
-	/datum/admins/proc/toggleAI,
-	/client/proc/cmd_admin_delete, /*delete an instance/object/mob/etc*/
-	/client/proc/cmd_debug_del_all,
-	/client/proc/toggle_random_events,
-	/client/proc/forcerandomrotate,
-	/client/proc/adminchangemap,
-	/client/proc/panicbunker,
-	/client/proc/toggle_interviews,
-	/client/proc/toggle_require_discord,
-	/client/proc/toggle_hub,
-	/client/proc/toggle_cdn
+	TYPE_PROC_REF(/datum/admins, startnow),
+	TYPE_PROC_REF(/datum/admins, restart),
+	TYPE_PROC_REF(/datum/admins, end_round),
+	TYPE_PROC_REF(/datum/admins, delay),
+	TYPE_PROC_REF(/datum/admins, toggleaban),
+	TYPE_PROC_REF(/client, everyone_random),
+	TYPE_PROC_REF(/datum/admins, toggleAI),
+	TYPE_PROC_REF(/client, cmd_admin_delete), /*delete an instance/object/mob/etc*/
+	TYPE_PROC_REF(/client, cmd_debug_del_all),
+	TYPE_PROC_REF(/client, toggle_random_events),
+	TYPE_PROC_REF(/client, forcerandomrotate),
+	TYPE_PROC_REF(/client, adminchangemap),
+	TYPE_PROC_REF(/client, panicbunker),
+	TYPE_PROC_REF(/client, toggle_interviews),
+	TYPE_PROC_REF(/client, toggle_require_discord),
+	TYPE_PROC_REF(/client, toggle_hub),
+	TYPE_PROC_REF(/client, toggle_cdn)
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
 /world/proc/AVerbsDebug()
 	return list(
-	/client/proc/restart_controller,
-	/client/proc/debug_controller,
-	/client/proc/cmd_admin_list_open_jobs,
-	/client/proc/Debug2,
-	/client/proc/cmd_debug_make_powernets,
-	/client/proc/cmd_debug_mob_lists,
-	/client/proc/cmd_admin_delete,
-	/client/proc/cmd_debug_del_all,
-	/client/proc/restart_controller,
-	/client/proc/enable_mapping_verbs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
-	/client/proc/SDQL2_query,
-	/client/proc/test_movable_UI,
-	/client/proc/test_snap_UI,
-	/client/proc/debugNatureMapGenerator,
-	/client/proc/check_bomb_impacts,
+	TYPE_PROC_REF(/client, restart_controller),
+	TYPE_PROC_REF(/client, debug_controller),
+	TYPE_PROC_REF(/client, cmd_admin_list_open_jobs),
+	TYPE_PROC_REF(/client, Debug2),
+	TYPE_PROC_REF(/client, cmd_debug_make_powernets),
+	TYPE_PROC_REF(/client, cmd_debug_mob_lists),
+	TYPE_PROC_REF(/client, cmd_admin_delete),
+	TYPE_PROC_REF(/client, cmd_debug_del_all),
+	TYPE_PROC_REF(/client, restart_controller),
+	TYPE_PROC_REF(/client, enable_mapping_verbs),
+	TYPE_PROC_REF(/client, callproc),
+	TYPE_PROC_REF(/client, callproc_datum),
+	TYPE_PROC_REF(/client, SDQL2_query),
+	TYPE_PROC_REF(/client, test_movable_UI),
+	TYPE_PROC_REF(/client, test_snap_UI),
+	TYPE_PROC_REF(/client, debugNatureMapGenerator),
+	TYPE_PROC_REF(/client, check_bomb_impacts),
 	/proc/machine_upgrade,
-	/client/proc/populate_world,
-	/client/proc/get_dynex_power, //*debug verbs for dynex explosions.
-	/client/proc/get_dynex_range, //*debug verbs for dynex explosions.
-	/client/proc/set_dynex_scale,
-	/client/proc/cmd_display_del_log,
-	/client/proc/outfit_manager,
-	/client/proc/open_colorblind_test,
-	/client/proc/generate_wikichem_list,
-	/client/proc/modify_goals,
-	/client/proc/debug_huds,
-	/client/proc/map_template_load,
-	/client/proc/map_template_upload,
-	/client/proc/jump_to_ruin,
-	/client/proc/clear_dynamic_transit,
-	/client/proc/run_empty_query,
-	/client/proc/toggle_medal_disable,
-	/client/proc/view_runtimes,
-	/client/proc/pump_random_event,
-	/client/proc/cmd_display_init_log,
-	/client/proc/cmd_display_overlay_log,
-	/client/proc/reload_configuration,
-	/client/proc/atmos_control,
-	/client/proc/reload_cards,
-	/client/proc/validate_cards,
-	/client/proc/test_cardpack_distribution,
-	/client/proc/print_cards,
+	TYPE_PROC_REF(/client, populate_world),
+	TYPE_PROC_REF(/client, get_dynex_power), //*debug verbs for dynex explosions.
+	TYPE_PROC_REF(/client, get_dynex_range), //*debug verbs for dynex explosions.
+	TYPE_PROC_REF(/client, set_dynex_scale),
+	TYPE_PROC_REF(/client, cmd_display_del_log),
+	TYPE_PROC_REF(/client, outfit_manager),
+	TYPE_PROC_REF(/client, open_colorblind_test),
+	TYPE_PROC_REF(/client, generate_wikichem_list),
+	TYPE_PROC_REF(/client, modify_goals),
+	TYPE_PROC_REF(/client, debug_huds),
+	TYPE_PROC_REF(/client, map_template_load),
+	TYPE_PROC_REF(/client, map_template_upload),
+	TYPE_PROC_REF(/client, jump_to_ruin),
+	TYPE_PROC_REF(/client, clear_dynamic_transit),
+	TYPE_PROC_REF(/client, run_empty_query),
+	TYPE_PROC_REF(/client, toggle_medal_disable),
+	TYPE_PROC_REF(/client, view_runtimes),
+	TYPE_PROC_REF(/client, pump_random_event),
+	TYPE_PROC_REF(/client, cmd_display_init_log),
+	TYPE_PROC_REF(/client, cmd_display_overlay_log),
+	TYPE_PROC_REF(/client, reload_configuration),
+	TYPE_PROC_REF(/client, atmos_control),
+	TYPE_PROC_REF(/client, reload_cards),
+	TYPE_PROC_REF(/client, validate_cards),
+	TYPE_PROC_REF(/client, test_cardpack_distribution),
+	TYPE_PROC_REF(/client, print_cards),
 	#ifdef TESTING
-	/client/proc/check_missing_sprites,
-	/client/proc/run_dynamic_simulations,
+	TYPE_PROC_REF(/client, check_missing_sprites),
+	TYPE_PROC_REF(/client, run_dynamic_simulations),
 	#endif
-	/client/proc/display_sendmaps,
-	/datum/admins/proc/create_or_modify_area,
-	/client/proc/check_timer_sources,
-	/client/proc/toggle_cdn,
-	/client/proc/cmd_sdql_spell_menu,
-	/client/proc/adventure_manager,
-	/client/proc/load_circuit,
-	/client/proc/cmd_admin_toggle_fov,
-	/client/proc/cmd_admin_debug_traitor_objectives,
-	/client/proc/spawn_debug_full_crew,
-	/client/proc/jumptocoord,
-	/client/proc/jumptokey,
-	/client/proc/jumptoarea,
-	/client/proc/admin_ghost,
-	/client/proc/cmd_admin_create_centcom_report,
+	TYPE_PROC_REF(/client, display_sendmaps),
+	TYPE_PROC_REF(/datum/admins, create_or_modify_area),
+	TYPE_PROC_REF(/client, check_timer_sources),
+	TYPE_PROC_REF(/client, toggle_cdn),
+	TYPE_PROC_REF(/client, cmd_sdql_spell_menu),
+	TYPE_PROC_REF(/client, adventure_manager),
+	TYPE_PROC_REF(/client, load_circuit),
+	TYPE_PROC_REF(/client, cmd_admin_toggle_fov),
+	TYPE_PROC_REF(/client, cmd_admin_debug_traitor_objectives),
+	TYPE_PROC_REF(/client, spawn_debug_full_crew),
+	TYPE_PROC_REF(/client, jumptocoord),
+	TYPE_PROC_REF(/client, jumptokey),
+	TYPE_PROC_REF(/client, jumptoarea),
+	TYPE_PROC_REF(/client, admin_ghost),
+	TYPE_PROC_REF(/client, cmd_admin_create_centcom_report),
 	)
 
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
 GLOBAL_PROTECT(admin_verbs_possess)
-GLOBAL_LIST_INIT(admin_verbs_permissions, list(/client/proc/edit_admin_permissions))
+GLOBAL_LIST_INIT(admin_verbs_permissions, list(TYPE_PROC_REF(/client, edit_admin_permissions)))
 GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_poll, list(/client/proc/poll_panel))
+GLOBAL_LIST_INIT(admin_verbs_poll, list(TYPE_PROC_REF(/client, poll_panel)))
 GLOBAL_PROTECT(admin_verbs_poll)
 
 //verbs which can be hidden - needs work
 GLOBAL_LIST_INIT(admin_verbs_hideable, list(
-	/client/proc/set_ooc,
-	/client/proc/reset_ooc,
-	/client/proc/deadmin,
-	/datum/admins/proc/show_traitor_panel,
-	/datum/admins/proc/show_skill_panel,
-	/datum/admins/proc/toggleenter,
-	/datum/admins/proc/toggleguests,
-	/datum/admins/proc/announce,
-	/datum/admins/proc/set_admin_notice,
-	/client/proc/admin_ghost,
-	/client/proc/toggle_view_range,
-	/client/proc/cmd_admin_subtle_message,
-	/client/proc/cmd_admin_headset_message,
-	/client/proc/cmd_admin_check_contents,
-	/datum/admins/proc/access_news_network,
-	/client/proc/admin_call_shuttle,
-	/client/proc/admin_cancel_shuttle,
-	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/cmd_admin_world_narrate,
-	/client/proc/cmd_admin_local_narrate,
-	/client/proc/play_local_sound,
-	/client/proc/play_sound,
-	/client/proc/set_round_end_sound,
-	/client/proc/cmd_select_equipment,
-	/client/proc/cmd_admin_gib_self,
-	/client/proc/drop_bomb,
-	/client/proc/drop_dynex_bomb,
-	/client/proc/get_dynex_range,
-	/client/proc/get_dynex_power,
-	/client/proc/set_dynex_scale,
-	/client/proc/cinematic,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/cmd_change_command_name,
-	/client/proc/object_say,
-	/client/proc/toggle_random_events,
-	/datum/admins/proc/startnow,
-	/datum/admins/proc/restart,
-	/datum/admins/proc/delay,
-	/datum/admins/proc/toggleaban,
-	/client/proc/everyone_random,
-	/datum/admins/proc/toggleAI,
-	/client/proc/restart_controller,
-	/client/proc/cmd_admin_list_open_jobs,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
-	/client/proc/Debug2,
-	/client/proc/reload_admins,
-	/client/proc/cmd_debug_make_powernets,
-	/client/proc/cmd_debug_mob_lists,
-	/client/proc/cmd_debug_del_all,
-	/client/proc/enable_mapping_verbs,
+	TYPE_PROC_REF(/client, set_ooc),
+	TYPE_PROC_REF(/client, reset_ooc),
+	TYPE_PROC_REF(/client, deadmin),
+	TYPE_PROC_REF(/datum/admins, show_traitor_panel),
+	TYPE_PROC_REF(/datum/admins, show_skill_panel),
+	TYPE_PROC_REF(/datum/admins, toggleenter),
+	TYPE_PROC_REF(/datum/admins, toggleguests),
+	TYPE_PROC_REF(/datum/admins, announce),
+	TYPE_PROC_REF(/datum/admins, set_admin_notice),
+	TYPE_PROC_REF(/client, admin_ghost),
+	TYPE_PROC_REF(/client, toggle_view_range),
+	TYPE_PROC_REF(/client, cmd_admin_subtle_message),
+	TYPE_PROC_REF(/client, cmd_admin_headset_message),
+	TYPE_PROC_REF(/client, cmd_admin_check_contents),
+	TYPE_PROC_REF(/datum/admins, access_news_network),
+	TYPE_PROC_REF(/client, admin_call_shuttle),
+	TYPE_PROC_REF(/client, admin_cancel_shuttle),
+	TYPE_PROC_REF(/client, cmd_admin_direct_narrate),
+	TYPE_PROC_REF(/client, cmd_admin_world_narrate),
+	TYPE_PROC_REF(/client, cmd_admin_local_narrate),
+	TYPE_PROC_REF(/client, play_local_sound),
+	TYPE_PROC_REF(/client, play_sound),
+	TYPE_PROC_REF(/client, set_round_end_sound),
+	TYPE_PROC_REF(/client, cmd_select_equipment),
+	TYPE_PROC_REF(/client, cmd_admin_gib_self),
+	TYPE_PROC_REF(/client, drop_bomb),
+	TYPE_PROC_REF(/client, drop_dynex_bomb),
+	TYPE_PROC_REF(/client, get_dynex_range),
+	TYPE_PROC_REF(/client, get_dynex_power),
+	TYPE_PROC_REF(/client, set_dynex_scale),
+	TYPE_PROC_REF(/client, cinematic),
+	TYPE_PROC_REF(/client, cmd_admin_add_freeform_ai_law),
+	TYPE_PROC_REF(/client, cmd_admin_create_centcom_report),
+	TYPE_PROC_REF(/client, cmd_change_command_name),
+	TYPE_PROC_REF(/client, object_say),
+	TYPE_PROC_REF(/client, toggle_random_events),
+	TYPE_PROC_REF(/datum/admins, startnow),
+	TYPE_PROC_REF(/datum/admins, restart),
+	TYPE_PROC_REF(/datum/admins, delay),
+	TYPE_PROC_REF(/datum/admins, toggleaban),
+	TYPE_PROC_REF(/client, everyone_random),
+	TYPE_PROC_REF(/datum/admins, toggleAI),
+	TYPE_PROC_REF(/client, restart_controller),
+	TYPE_PROC_REF(/client, cmd_admin_list_open_jobs),
+	TYPE_PROC_REF(/client, callproc),
+	TYPE_PROC_REF(/client, callproc_datum),
+	TYPE_PROC_REF(/client, Debug2),
+	TYPE_PROC_REF(/client, reload_admins),
+	TYPE_PROC_REF(/client, cmd_debug_make_powernets),
+	TYPE_PROC_REF(/client, cmd_debug_mob_lists),
+	TYPE_PROC_REF(/client, cmd_debug_del_all),
+	TYPE_PROC_REF(/client, enable_mapping_verbs),
 	/proc/possess,
 	/proc/release,
-	/client/proc/reload_admins,
-	/client/proc/panicbunker,
-	/client/proc/toggle_interviews,
-	/client/proc/toggle_require_discord,
-	/client/proc/admin_change_sec_level,
-	/client/proc/toggle_nuke,
-	/client/proc/cmd_display_del_log,
-	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	TYPE_PROC_REF(/client, reload_admins),
+	TYPE_PROC_REF(/client, panicbunker),
+	TYPE_PROC_REF(/client, toggle_interviews),
+	TYPE_PROC_REF(/client, toggle_require_discord),
+	TYPE_PROC_REF(/client, admin_change_sec_level),
+	TYPE_PROC_REF(/client, toggle_nuke),
+	TYPE_PROC_REF(/client, cmd_display_del_log),
+	TYPE_PROC_REF(/client, toggle_combo_hud),
+	TYPE_PROC_REF(/client, debug_huds)
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
@@ -288,7 +288,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		var/rights = holder.rank.rights
 		add_verb(src, GLOB.admin_verbs_default)
 		if(rights & R_BUILD)
-			add_verb(src, /client/proc/togglebuildmodeself)
+			add_verb(src, TYPE_PROC_REF(/client, togglebuildmodeself))
 		if(rights & R_ADMIN)
 			add_verb(src, GLOB.admin_verbs_admin)
 		if(rights & R_BAN)
@@ -304,20 +304,20 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		if(rights & R_PERMISSIONS)
 			add_verb(src, GLOB.admin_verbs_permissions)
 		if(rights & R_STEALTH)
-			add_verb(src, /client/proc/stealth)
+			add_verb(src, TYPE_PROC_REF(/client, stealth))
 		if(rights & R_ADMIN)
 			add_verb(src, GLOB.admin_verbs_poll)
 		if(rights & R_SOUND)
 			add_verb(src, GLOB.admin_verbs_sounds)
 			if(CONFIG_GET(string/invoke_youtubedl))
-				add_verb(src, /client/proc/play_web_sound)
+				add_verb(src, TYPE_PROC_REF(/client, play_web_sound))
 		if(rights & R_SPAWN)
 			add_verb(src, GLOB.admin_verbs_spawn)
 
 /client/proc/remove_admin_verbs()
 	remove_verb(src, list(
 		GLOB.admin_verbs_default,
-		/client/proc/togglebuildmodeself,
+		TYPE_PROC_REF(/client, togglebuildmodeself),
 		GLOB.admin_verbs_admin,
 		GLOB.admin_verbs_ban,
 		GLOB.admin_verbs_fun,
@@ -325,15 +325,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.admin_verbs_debug,
 		GLOB.admin_verbs_possess,
 		GLOB.admin_verbs_permissions,
-		/client/proc/stealth,
+		TYPE_PROC_REF(/client, stealth),
 		GLOB.admin_verbs_poll,
 		GLOB.admin_verbs_sounds,
-		/client/proc/play_web_sound,
+		TYPE_PROC_REF(/client, play_web_sound),
 		GLOB.admin_verbs_spawn,
 		/*Debug verbs added by "show debug verbs"*/
 		GLOB.admin_verbs_debug_mapping,
-		/client/proc/disable_mapping_verbs,
-		/client/proc/readmin
+		TYPE_PROC_REF(/client, disable_mapping_verbs),
+		TYPE_PROC_REF(/client, readmin)
 		))
 
 /client/proc/hide_verbs()
@@ -341,7 +341,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin"
 
 	remove_admin_verbs()
-	add_verb(src, /client/proc/show_verbs)
+	add_verb(src, TYPE_PROC_REF(/client, show_verbs))
 
 	to_chat(src, span_interface("Almost all of your adminverbs have been hidden."), confidential = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Hide All Adminverbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -351,7 +351,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Adminverbs - Show"
 	set category = "Admin"
 
-	remove_verb(src, /client/proc/show_verbs)
+	remove_verb(src, TYPE_PROC_REF(/client, show_verbs))
 	add_admin_verbs()
 
 	to_chat(src, span_interface("All of your adminverbs are now visible."), confidential = TRUE)

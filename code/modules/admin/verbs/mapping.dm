@@ -20,40 +20,40 @@
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
 GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
-	/client/proc/camera_view, //-errorage
-	/client/proc/sec_camera_report, //-errorage
-	/client/proc/intercom_view, //-errorage
-	/client/proc/air_status, //Air things
-	/client/proc/Cell, //More air things
-	/client/proc/atmosscan,
-	/client/proc/powerdebug, //check power
-	/client/proc/count_objects_on_z_level,
-	/client/proc/count_objects_all,
-	/client/proc/cmd_assume_direct_control, //-errorage
-	/client/proc/cmd_give_direct_control,
-	/client/proc/set_server_fps, //allows you to set the ticklag.
-	/client/proc/cmd_admin_grantfullaccess,
-	/client/proc/cmd_admin_areatest_all,
-	/client/proc/cmd_admin_areatest_station,
+	TYPE_PROC_REF(/client, camera_view), //-errorage
+	TYPE_PROC_REF(/client, sec_camera_report), //-errorage
+	TYPE_PROC_REF(/client, intercom_view), //-errorage
+	TYPE_PROC_REF(/client, air_status), //Air things
+	TYPE_PROC_REF(/client, Cell), //More air things
+	TYPE_PROC_REF(/client, atmosscan), //check plumbing
+	TYPE_PROC_REF(/client, powerdebug), //check power
+	TYPE_PROC_REF(/client, count_objects_on_z_level),
+	TYPE_PROC_REF(/client, count_objects_all),
+	TYPE_PROC_REF(/client, cmd_assume_direct_control), //-errorage
+	TYPE_PROC_REF(/client, cmd_give_direct_control),
+	TYPE_PROC_REF(/client, set_server_fps), //allows you to set the ticklag.
+	TYPE_PROC_REF(/client, cmd_admin_grantfullaccess),
+	TYPE_PROC_REF(/client, cmd_admin_areatest_all),
+	TYPE_PROC_REF(/client, cmd_admin_areatest_station),
 	#ifdef TESTING
-	/client/proc/see_dirty_varedits,
+	TYPE_PROC_REF(/client, see_dirty_varedits),
 	#endif
-	/client/proc/cmd_admin_rejuvenate,
-	/datum/admins/proc/show_traitor_panel,
-	/client/proc/disable_communication,
-	/client/proc/show_map_reports,
-	/client/proc/cmd_show_at_list,
-	/client/proc/cmd_show_at_markers,
-	/client/proc/manipulate_organs,
-	/client/proc/start_line_profiling,
-	/client/proc/stop_line_profiling,
-	/client/proc/show_line_profiling,
-	/client/proc/create_mapping_job_icons,
-	/client/proc/debug_z_levels,
-	/client/proc/place_ruin,
-	/client/proc/station_food_debug,
-	/client/proc/station_stack_debug,
-	/client/proc/check_atmos_controls,
+	TYPE_PROC_REF(/client, cmd_admin_rejuvenate),
+	TYPE_PROC_REF(/datum/admins, show_traitor_panel),
+	TYPE_PROC_REF(/client, disable_communication),
+	TYPE_PROC_REF(/client, show_map_reports),
+	TYPE_PROC_REF(/client, cmd_show_at_list),
+	TYPE_PROC_REF(/client, cmd_show_at_markers),
+	TYPE_PROC_REF(/client, manipulate_organs),
+	TYPE_PROC_REF(/client, start_line_profiling),
+	TYPE_PROC_REF(/client, stop_line_profiling),
+	TYPE_PROC_REF(/client, show_line_profiling),
+	TYPE_PROC_REF(/client, create_mapping_job_icons),
+	TYPE_PROC_REF(/client, debug_z_levels),
+	TYPE_PROC_REF(/client, place_ruin),
+	TYPE_PROC_REF(/client, station_food_debug),
+	TYPE_PROC_REF(/client, station_stack_debug),
+	TYPE_PROC_REF(/client, check_atmos_controls),
 ))
 GLOBAL_PROTECT(admin_verbs_debug_mapping)
 
@@ -205,15 +205,15 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Mapping verbs - Enable"
 	if(!check_rights(R_DEBUG))
 		return
-	remove_verb(src, /client/proc/enable_mapping_verbs)
-	add_verb(src, list(/client/proc/disable_mapping_verbs, GLOB.admin_verbs_debug_mapping))
+	remove_verb(src, TYPE_PROC_REF(/client, enable_mapping_verbs))
+	add_verb(src, list(TYPE_PROC_REF(/client, disable_mapping_verbs), GLOB.admin_verbs_debug_mapping))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Enable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/disable_mapping_verbs()
 	set category = "Debug"
 	set name = "Mapping verbs - Disable"
-	remove_verb(src, list(/client/proc/disable_mapping_verbs, GLOB.admin_verbs_debug_mapping))
-	add_verb(src, /client/proc/enable_mapping_verbs)
+	remove_verb(src, list(TYPE_PROC_REF(/client, disable_mapping_verbs), GLOB.admin_verbs_debug_mapping))
+	add_verb(src, TYPE_PROC_REF(/client, enable_mapping_verbs))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Disable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_on_z_level()

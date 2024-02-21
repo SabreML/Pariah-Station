@@ -454,7 +454,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(P.reset)
 			guardians -= P //clear out guardians that are already reset
 	if(!length(guardians))
-		remove_verb(src, /mob/living/proc/guardian_reset)
+		remove_verb(src, TYPE_PROC_REF(/mob/living, guardian_reset))
 		return
 
 	var/mob/living/simple_animal/hostile/guardian/chosen_guardian = tgui_input_list(src, "Pick the guardian you wish to reset", "Guardian Reset", sort_names(guardians))
@@ -488,7 +488,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			to_chat(src, span_holoparasite("<font color=\"[chosen_guardian.guardiancolor]\"><b>[chosen_guardian.real_name]</b></font> has appeared!"))
 	guardians -= chosen_guardian
 	if(!length(guardians))
-		remove_verb(src, /mob/living/proc/guardian_reset)
+		remove_verb(src, TYPE_PROC_REF(/mob/living, guardian_reset))
 
 ////////parasite tracking/finding procs
 
@@ -620,9 +620,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("miner")
 			to_chat(user, "[G.miner_fluff_string]")
 			to_chat(user, span_holoparasite("<b>[G.real_name]</b> has appeared!"))
-	add_verb(user, list(/mob/living/proc/guardian_comm, \
-						/mob/living/proc/guardian_recall, \
-						/mob/living/proc/guardian_reset))
+	add_verb(user, list(TYPE_PROC_REF(/mob/living, guardian_comm), \
+						TYPE_PROC_REF(/mob/living, guardian_recall), \
+						TYPE_PROC_REF(/mob/living, guardian_reset)))
 	G?.client.init_verbs()
 	return G
 

@@ -158,7 +158,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	add_verb(src, /mob/living/silicon/ai/proc/show_laws_verb)
+	add_verb(src, TYPE_PROC_REF(/mob/living/silicon/ai, show_laws_verb))
 
 	create_modularInterface()
 
@@ -169,11 +169,11 @@
 
 	if(isturf(loc))
 		add_verb(src, list(
-			/mob/living/silicon/ai/proc/ai_network_change,
-			/mob/living/silicon/ai/proc/ai_hologram_change,
-			/mob/living/silicon/ai/proc/botcall,
-			/mob/living/silicon/ai/proc/control_integrated_radio,
-			/mob/living/silicon/ai/proc/set_automatic_say_channel,
+			TYPE_PROC_REF(/mob/living/silicon/ai, ai_network_change),
+			TYPE_PROC_REF(/mob/living/silicon/ai, ai_hologram_change),
+			TYPE_PROC_REF(/mob/living/silicon/ai, botcall),
+			TYPE_PROC_REF(/mob/living/silicon/ai, control_integrated_radio),
+			TYPE_PROC_REF(/mob/living/silicon/ai, set_automatic_say_channel),
 		))
 
 	GLOB.ai_list += src

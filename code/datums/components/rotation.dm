@@ -43,17 +43,17 @@
 
 /datum/component/simple_rotation/proc/AddVerbs()
 	var/obj/rotated_obj = parent
-	rotated_obj.verbs += /atom/movable/proc/SimpleRotateClockwise
-	rotated_obj.verbs += /atom/movable/proc/SimpleRotateCounterclockwise
+	rotated_obj.verbs += TYPE_PROC_REF(/atom/movable, SimpleRotateClockwise)
+	rotated_obj.verbs += TYPE_PROC_REF(/atom/movable, SimpleRotateCounterclockwise)
 	if(!(rotation_flags & ROTATION_NO_FLIPPING))
-		rotated_obj.verbs += /atom/movable/proc/SimpleRotateFlip
+		rotated_obj.verbs += TYPE_PROC_REF(/atom/movable, SimpleRotateFlip)
 
 /datum/component/simple_rotation/proc/RemoveVerbs()
 	if(parent)
 		var/obj/rotated_obj = parent
-		rotated_obj.verbs -= /atom/movable/proc/SimpleRotateFlip
-		rotated_obj.verbs -= /atom/movable/proc/SimpleRotateClockwise
-		rotated_obj.verbs -= /atom/movable/proc/SimpleRotateCounterclockwise
+		rotated_obj.verbs -= TYPE_PROC_REF(/atom/movable, SimpleRotateFlip)
+		rotated_obj.verbs -= TYPE_PROC_REF(/atom/movable, SimpleRotateClockwise)
+		rotated_obj.verbs -= TYPE_PROC_REF(/atom/movable, SimpleRotateCounterclockwise)
 
 /datum/component/simple_rotation/proc/RemoveSignals()
 	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_CLICK_ALT_SECONDARY, COMSIG_PARENT_EXAMINE))
