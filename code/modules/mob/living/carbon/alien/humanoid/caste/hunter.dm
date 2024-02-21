@@ -50,7 +50,7 @@
 		body_position_pixel_y_offset = -32
 		update_icons()
 		ADD_TRAIT(src, TRAIT_MOVE_FLOATING, LEAPING_TRAIT) //Throwing itself doesn't protect mobs against lava (because gulag).
-		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
+		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end)))
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = FALSE
@@ -85,4 +85,3 @@
 		else if(hit_atom.density && !hit_atom.CanPass(src, get_dir(hit_atom, src)))
 			visible_message(span_danger("[src] smashes into [hit_atom]!"), span_alertalien("[src] smashes into [hit_atom]!"))
 			Paralyze(40, ignore_canstun = TRUE)
-

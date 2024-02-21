@@ -385,7 +385,7 @@
 	chem_splash(get_turf(src), reagents, affected_area, list(reactants), ignition_temp, threatscale)
 
 	var/turf/detonated_turf = get_turf(src)
-	addtimer(CALLBACK(src, .proc/detonate), det_time)
+	addtimer(CALLBACK(src, PROC_REF(detonate)), det_time)
 	log_game("A grenade detonated at [AREACOORD(detonated_turf)]")
 
 

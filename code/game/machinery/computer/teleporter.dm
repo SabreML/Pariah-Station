@@ -248,7 +248,7 @@
 	if (istype(shell, /obj/machinery/computer/teleporter))
 		attached_console = shell
 
-		RegisterSignal(attached_console, COMSIG_TELEPORTER_NEW_TARGET, .proc/on_teleporter_new_target)
+		RegisterSignal(attached_console, COMSIG_TELEPORTER_NEW_TARGET, PROC_REF(on_teleporter_new_target))
 		update_targets()
 
 /obj/item/circuit_component/teleporter_control_console/unregister_usb_parent(atom/movable/shell)

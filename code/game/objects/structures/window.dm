@@ -68,12 +68,12 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 
 	flags_1 |= ALLOW_DARK_PAINTS_1
-	RegisterSignal(src, COMSIG_OBJ_PAINTED, .proc/on_painted)
+	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(on_painted))
 	AddElement(/datum/element/atmos_sensitive, mapload)
-	AddComponent(/datum/component/simple_rotation, ROTATION_NEEDS_ROOM, AfterRotation = CALLBACK(src,.proc/AfterRotation))
+	AddComponent(/datum/component/simple_rotation, ROTATION_NEEDS_ROOM, AfterRotation = CALLBACK(src,PROC_REF(AfterRotation)))
 
 	var/static/list/loc_connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_exit,
+		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
 	)
 
 	if (flags_1 & ON_BORDER_1)
@@ -203,7 +203,7 @@
 	if((flags_1 & NODECONSTRUCT_1) || (reinf && state >= RWINDOW_FRAME_BOLTED))
 		return
 	to_chat(user, span_notice("You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor..."))
-	if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
+	if(tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 		set_anchored(!anchored)
 		to_chat(user, span_notice("You [anchored ? "fasten the window to":"unfasten the window from"] the floor."))
 	return TOOL_ACT_TOOLTYPE_SUCCESS
@@ -215,7 +215,7 @@
 		return FALSE
 
 	to_chat(user, span_notice("You begin to disassemble [src]..."))
-	if(!tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+	if(!tool.use_tool(src, user, decon_speed, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 		return TOOL_ACT_TOOLTYPE_SUCCESS
 	var/obj/item/stack/sheet/G = new glass_type(user.loc, glass_amount)
 	if (!QDELETED(G))
@@ -231,7 +231,7 @@
 	if((flags_1 & NODECONSTRUCT_1) || (state != WINDOW_OUT_OF_FRAME))
 		return FALSE
 	to_chat(user, span_notice("You begin to lever the window into the frame..."))
-	if(tool.use_tool(src, user, 10 SECONDS, volume = 75, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+	if(tool.use_tool(src, user, 10 SECONDS, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 		state = RWINDOW_SECURE
 		to_chat(user, span_notice("You pry the window into the frame."))
 	return TOOL_ACT_TOOLTYPE_SUCCESS
@@ -424,7 +424,7 @@
 				if(tool.use_tool(src, user, 150, volume = 100))
 					to_chat(user, span_notice("The security screws are glowing white hot and look ready to be removed."))
 					state = RWINDOW_BOLTS_HEATED
-					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 			else if (tool.tool_behaviour)
 				to_chat(user, span_warning("The security screws need to be heated first!"))
 

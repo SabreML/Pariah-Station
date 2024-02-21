@@ -366,7 +366,7 @@
 
 /obj/item/borg/lollipop/proc/check_amount() //Doesn't even use processing ticks.
 	if(!charging && candy < candymax)
-		addtimer(CALLBACK(src, .proc/charge_lollipops), charge_delay)
+		addtimer(CALLBACK(src, PROC_REF(charge_lollipops)), charge_delay)
 		charging = TRUE
 
 /obj/item/borg/lollipop/proc/charge_lollipops()
@@ -607,7 +607,7 @@
 	icon_state = "shield0"
 	START_PROCESSING(SSfastprocess, src)
 	host = loc
-	RegisterSignal(host, COMSIG_LIVING_DEATH, .proc/on_death)
+	RegisterSignal(host, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 
 /obj/item/borg/projectile_dampen/proc/on_death(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -786,7 +786,7 @@
 
 /obj/item/borg/apparatus/Initialize(mapload)
 	. = ..()
-	RegisterSignal(loc.loc, COMSIG_BORG_SAFE_DECONSTRUCT, .proc/safedecon)
+	RegisterSignal(loc.loc, COMSIG_BORG_SAFE_DECONSTRUCT, PROC_REF(safedecon))
 
 /obj/item/borg/apparatus/Destroy()
 	QDEL_NULL(stored)
@@ -842,7 +842,7 @@
 			var/obj/item/O = A
 			O.forceMove(src)
 			stored = O
-			RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, .proc/on_stored_updated_icon)
+			RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_stored_updated_icon))
 			update_appearance()
 			return
 	else
@@ -881,7 +881,7 @@
 /obj/item/borg/apparatus/beaker/Initialize(mapload)
 	. = ..()
 	stored = new /obj/item/reagent_containers/glass/beaker/large(src)
-	RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, .proc/on_stored_updated_icon)
+	RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_stored_updated_icon))
 	update_appearance()
 
 /obj/item/borg/apparatus/beaker/Destroy()
@@ -945,7 +945,7 @@
 /obj/item/borg/apparatus/beaker/service/Initialize(mapload)
 	. = ..()
 	stored = new /obj/item/reagent_containers/food/drinks/drinkingglass(src)
-	RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, .proc/on_stored_updated_icon)
+	RegisterSignal(stored, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_stored_updated_icon))
 	update_appearance()
 
 /////////////////////

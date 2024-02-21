@@ -49,8 +49,8 @@
 		human_parent.throw_alert(ALERT_IRRADIATED, /atom/movable/screen/alert/irradiated)
 
 /datum/component/irradiated/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/on_clean)
-	RegisterSignal(parent, COMSIG_GEIGER_COUNTER_SCAN, .proc/on_geiger_counter_scan)
+	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(on_clean))
+	RegisterSignal(parent, COMSIG_GEIGER_COUNTER_SCAN, PROC_REF(on_geiger_counter_scan))
 
 /datum/component/irradiated/UnregisterFromParent()
 	UnregisterSignal(parent, list(

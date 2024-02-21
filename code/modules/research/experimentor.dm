@@ -513,12 +513,12 @@
 			investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
 		if(globalMalf == 99)
 			visible_message(span_warning("[src] begins to glow and vibrate. It's going to blow!"))
-			addtimer(CALLBACK(src, .proc/boom), 50)
+			addtimer(CALLBACK(src, PROC_REF(boom)), 50)
 		if(globalMalf == 100)
 			visible_message(span_warning("[src] begins to glow and vibrate. It's going to blow!"))
-			addtimer(CALLBACK(src, .proc/honk), 50)
+			addtimer(CALLBACK(src, PROC_REF(honk)), 50)
 
-	addtimer(CALLBACK(src, .proc/reset_exp), resetTime)
+	addtimer(CALLBACK(src, PROC_REF(reset_exp)), resetTime)
 
 /obj/machinery/rnd/experimentor/proc/boom()
 	explosion(src, devastation_range = 1, heavy_impact_range = 5, light_impact_range = 10, flash_range = 5, adminlog = TRUE)
@@ -581,7 +581,7 @@
 	revealed = TRUE
 	name = realName
 	reset_timer = rand(reset_timer, reset_timer * 5)
-	realProc = pick(.proc/teleport,.proc/explode,.proc/rapidDupe,.proc/petSpray,.proc/flash,.proc/clean,.proc/corgicannon)
+	realProc = pick(.proc/teleport,PROC_REF(explode),PROC_REF(rapidDupe),PROC_REF(petSpray),PROC_REF(flash),PROC_REF(clean),PROC_REF(corgicannon))
 
 /obj/item/relic/attack_self(mob/user)
 	if(!revealed)
@@ -605,7 +605,7 @@
 /obj/item/relic/proc/corgicannon(mob/user)
 	playsound(src, SFX_SPARKS, rand(25,50), TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	var/mob/living/simple_animal/pet/dog/corgi/C = new/mob/living/simple_animal/pet/dog/corgi(get_turf(user))
-	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, .proc/throwSmoke, C))
+	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throwSmoke), C))
 	warn_admins(user, "Corgi Cannon", 0)
 
 /obj/item/relic/proc/clean(mob/user)

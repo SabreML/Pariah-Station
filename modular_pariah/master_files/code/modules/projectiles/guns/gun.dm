@@ -467,7 +467,7 @@
 		process_chamber()
 		update_appearance()
 		semicd = TRUE
-		addtimer(CALLBACK(src, .proc/reset_semicd), fire_delay)
+		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
 	if(user)
 		user.update_inv_hands()
@@ -804,7 +804,7 @@
 		zoomed = forced_zoom
 
 	if(zoomed)
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 		user.client?.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
 	else
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)

@@ -256,8 +256,8 @@
 	var/datum/status_effect/eldritch/mark_type
 
 /datum/heretic_knowledge/mark/on_gain(mob/user)
-	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, .proc/on_mansus_grasp)
-	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, .proc/on_eldritch_blade)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
 
 /datum/heretic_knowledge/mark/on_lose(mob/user)
 	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_HERETIC_BLADE_ATTACK))
@@ -317,8 +317,8 @@
 	cost = 2
 
 /datum/heretic_knowledge/blade_upgrade/on_gain(mob/user)
-	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, .proc/on_eldritch_blade)
-	RegisterSignal(user, COMSIG_HERETIC_RANGED_BLADE_ATTACK, .proc/on_ranged_eldritch_blade)
+	RegisterSignal(user, COMSIG_HERETIC_BLADE_ATTACK, PROC_REF(on_eldritch_blade))
+	RegisterSignal(user, COMSIG_HERETIC_RANGED_BLADE_ATTACK, PROC_REF(on_ranged_eldritch_blade))
 
 /datum/heretic_knowledge/blade_upgrade/on_lose(mob/user)
 	UnregisterSignal(user, list(COMSIG_HERETIC_BLADE_ATTACK, COMSIG_HERETIC_RANGED_BLADE_ATTACK))
@@ -405,7 +405,7 @@
 
 	log_combat(user, to_curse, "cursed via heretic ritual", addition = "([name])")
 	curse(to_curse)
-	addtimer(CALLBACK(src, .proc/uncurse, to_curse), duration)
+	addtimer(CALLBACK(src, PROC_REF(uncurse), to_curse), duration)
 	return TRUE
 
 /**

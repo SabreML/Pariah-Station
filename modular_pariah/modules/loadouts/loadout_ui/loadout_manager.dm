@@ -158,7 +158,7 @@
 		src,
 		usr,
 		allowed_configs,
-		CALLBACK(src, .proc/set_slot_greyscale, colored_item),
+		CALLBACK(src, PROC_REF(set_slot_greyscale), colored_item),
 		starting_icon_state = initial(colored_item.icon_state),
 		starting_config = initial(colored_item.greyscale_config),
 		starting_colors = slot_starting_colors,
@@ -307,5 +307,3 @@
 		formatted_list[array_index++] = formatted_item
 
 	return formatted_list
-
-

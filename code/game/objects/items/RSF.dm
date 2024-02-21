@@ -86,7 +86,7 @@ RSF
 	var/cost = 0
 	//Warning, prepare for bodgecode
 	while(islist(target))//While target is a list we continue the loop
-		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE)
 		if(!check_menu(user) || picked == null)
 			return
 		for(var/emem in target)//Back through target agian
@@ -188,4 +188,3 @@ RSF
 		toxin = FALSE
 		to_dispense = /obj/item/food/cookie
 		to_chat(user, span_notice("Cookie Synthesizer reset."))
-

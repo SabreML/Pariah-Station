@@ -63,7 +63,7 @@
 	if(!ishuman(current_target))
 		current_target.Paralyze(8 SECONDS)
 		current_target.set_timed_status_effect(40 SECONDS, /datum/status_effect/speech/stutter)
-		addtimer(CALLBACK(src, .proc/limiting_spam_false), cooldowntime)
+		addtimer(CALLBACK(src, PROC_REF(limiting_spam_false)), cooldowntime)
 		return
 
 	current_target.set_timed_status_effect(40 SECONDS, /datum/status_effect/speech/stutter)
@@ -83,7 +83,7 @@
 			var/mob/living/carbon/human/human_target = current_target
 			threatlevel = human_target.assess_threat(judgement_criteria)
 		threatlevel -= 6
-	addtimer(CALLBACK(src, .proc/limiting_spam_false), cooldowntime)
+	addtimer(CALLBACK(src, PROC_REF(limiting_spam_false)), cooldowntime)
 
 	log_combat(src, current_target, "honked")
 
@@ -126,7 +126,7 @@
 		icon_state = "[initial(icon_state)]-c"
 
 	limiting_spam = TRUE // prevent spam
-	addtimer(CALLBACK(src, .proc/limiting_spam_false), cooldowntimehorn)
+	addtimer(CALLBACK(src, PROC_REF(limiting_spam_false)), cooldowntimehorn)
 	addtimer(CALLBACK(src, /atom.proc/update_appearance), 3 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 //Honkbots don't care for NAP violations
@@ -143,4 +143,4 @@
 	limiting_spam = TRUE // prevent spam
 	icon_state = "[initial(icon_state)]-c"
 	addtimer(CALLBACK(src, /atom.proc/update_appearance), 0.2 SECONDS)
-	addtimer(CALLBACK(src, .proc/limiting_spam_false), cooldowntimehorn)
+	addtimer(CALLBACK(src, PROC_REF(limiting_spam_false)), cooldowntimehorn)

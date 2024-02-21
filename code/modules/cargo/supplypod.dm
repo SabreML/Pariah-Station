@@ -440,7 +440,7 @@
 	deleteRubble()
 	animate(holder, alpha = 0, time = 8, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	animate(holder, pixel_z = 400, time = 10, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL) //Animate our rising pod
-	addtimer(CALLBACK(src, .proc/handleReturnAfterDeparting, holder), 15) //Finish up the pod's duties after a certain amount of time
+	addtimer(CALLBACK(src, PROC_REF(handleReturnAfterDeparting), holder), 15) //Finish up the pod's duties after a certain amount of time
 
 /obj/structure/closet/supplypod/setOpened() //Proc exists here, as well as in any atom that can assume the role of a "holder" of a supplypod. Check the open_pod() proc for more details
 	opened = TRUE
@@ -487,7 +487,7 @@
 	vis_contents += glow_effect
 	glow_effect.layer = GASFIRE_LAYER
 	glow_effect.plane = ABOVE_GAME_PLANE
-	RegisterSignal(glow_effect, COMSIG_PARENT_QDELETING, .proc/remove_glow)
+	RegisterSignal(glow_effect, COMSIG_PARENT_QDELETING, PROC_REF(remove_glow))
 
 /obj/structure/closet/supplypod/proc/endGlow()
 	if(!glow_effect)
@@ -632,7 +632,7 @@
 	if (soundStartTime < 0)
 		soundStartTime = 1
 	if (!pod.effectQuiet && !(pod.pod_flags & FIRST_SOUNDS))
-		addtimer(CALLBACK(src, .proc/playFallingSound), soundStartTime)
+		addtimer(CALLBACK(src, PROC_REF(playFallingSound)), soundStartTime)
 	addtimer(CALLBACK(src, .proc/beginLaunch, pod.effectCircle), pod.delays[POD_TRANSIT])
 
 /obj/effect/pod_landingzone/proc/playFallingSound()

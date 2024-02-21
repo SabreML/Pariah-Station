@@ -358,7 +358,7 @@
 
 	recently_dead_ckeys += body.ckey
 	spawned_mobs -= body
-	addtimer(CALLBACK(src, .proc/clear_cooldown, body.ckey), respawn_cooldown, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(clear_cooldown), body.ckey), respawn_cooldown, TIMER_UNIQUE)
 
 /obj/machinery/capture_the_flag/proc/clear_cooldown(ckey)
 	recently_dead_ckeys -= ckey

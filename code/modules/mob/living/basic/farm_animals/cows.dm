@@ -34,7 +34,7 @@
 		tip_time = 0.5 SECONDS, \
 		untip_time = 0.5 SECONDS, \
 		self_right_time = rand(25 SECONDS, 50 SECONDS), \
-		post_tipped_callback = CALLBACK(src, .proc/after_cow_tipped))
+		post_tipped_callback = CALLBACK(src, PROC_REF(after_cow_tipped)))
 	AddElement(/datum/element/pet_bonus, "moos happily!")
 	udder_component()
 	make_tameable()
@@ -46,7 +46,7 @@
 
 ///wrapper for the tameable component addition so you can have non tamable cow subtypes
 /mob/living/basic/cow/proc/make_tameable()
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/wheat), tame_chance = 25, bonus_tame_chance = 15, after_tame = CALLBACK(src, .proc/tamed))
+	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/wheat), tame_chance = 25, bonus_tame_chance = 15, after_tame = CALLBACK(src, PROC_REF(tamed)))
 
 /mob/living/basic/cow/proc/tamed(mob/living/tamer)
 	can_buckle = TRUE
@@ -142,7 +142,7 @@
 	AddComponent(/datum/component/udder, /obj/item/udder, null, null, /datum/reagent/drug/mushroomhallucinogen)
 
 /mob/living/basic/cow/moonicorn/make_tameable()
-	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/galaxythistle), tame_chance = 25, bonus_tame_chance = 15, after_tame = CALLBACK(src, .proc/tamed))
+	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/galaxythistle), tame_chance = 25, bonus_tame_chance = 15, after_tame = CALLBACK(src, PROC_REF(tamed)))
 
 /mob/living/basic/cow/moonicorn/tamed(mob/living/tamer)
 	. = ..()

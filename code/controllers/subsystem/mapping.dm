@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(mapping)
 	setup_map_transitions()
 	generate_station_area_list()
 	initialize_reserved_level(transit.z_value)
-	SSticker.OnRoundstart(CALLBACK(src, .proc/spawn_maintenance_loot))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(spawn_maintenance_loot)))
 	return ..()
 
 /**

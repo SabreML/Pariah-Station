@@ -388,7 +388,7 @@
 		process_chamber()
 		update_appearance()
 		semicd = TRUE
-		addtimer(CALLBACK(src, .proc/reset_semicd), modified_delay)
+		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), modified_delay)
 
 	if(user)
 		user.update_inv_hands()

@@ -11,7 +11,7 @@
 		return ELEMENT_INCOMPATIBLE
 	src.dry_result = dry_result
 
-	RegisterSignal(target, COMSIG_ITEM_DRIED, .proc/finish_drying)
+	RegisterSignal(target, COMSIG_ITEM_DRIED, PROC_REF(finish_drying))
 	ADD_TRAIT(target, TRAIT_DRYABLE, ELEMENT_TRAIT(type))
 
 
@@ -41,4 +41,3 @@
 		var/atom/movable/resulting_atom = new dry_result(source.drop_location())
 		ADD_TRAIT(resulting_atom, TRAIT_DRIED, ELEMENT_TRAIT(type))
 		qdel(source)
-

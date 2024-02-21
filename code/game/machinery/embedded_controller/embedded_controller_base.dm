@@ -58,7 +58,7 @@
 	process_command(href_list["command"])
 
 	usr.set_machine(src)
-	addtimer(CALLBACK(src, .proc/updateDialog), 5)
+	addtimer(CALLBACK(src, PROC_REF(updateDialog)), 5)
 
 /obj/machinery/embedded_controller/proc/process_command(command)
 	if(program)
