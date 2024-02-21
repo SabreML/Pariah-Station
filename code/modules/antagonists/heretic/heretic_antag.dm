@@ -597,7 +597,7 @@
 			continue
 		rituals[knowledge.name] = knowledge
 
-	return sortTim(rituals, /proc/cmp_heretic_knowledge, associative = TRUE)
+	return sortTim(rituals, GLOBAL_PROC_REF(cmp_heretic_knowledge), associative = TRUE)
 
 /*
  * Checks to see if our heretic can ccurrently ascend.
