@@ -31,3 +31,5 @@ export CUTTER_REPO=actioninja/hypnagogic
 
 #hypnagogic git tag
 export CUTTER_VERSION=v3.0.1
+
+export OPENDREAM_VERSION=tgs-min-compat
