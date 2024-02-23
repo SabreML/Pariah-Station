@@ -52,6 +52,8 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #define testing_profile_local_output_all testing_profile_output_all(_timer_system)
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+GLOBAL_LIST_EMPTY(test_log)
+GLOBAL_PROTECT(test_log)
 /proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
