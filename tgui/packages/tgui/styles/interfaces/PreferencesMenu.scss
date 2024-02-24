@@ -2,6 +2,7 @@
 @use 'sass:map';
 @use '../components/Button.scss';
 @use '../colors.scss';
+@use '../base.scss';
 
 $department_map: (
   'Assistant': colors.$grey,
@@ -15,6 +16,10 @@ $department_map: (
   'Service': colors.$green,
   'Silicon': colors.$pink,
 );
+
+.ChoicedSelection {
+  background-color: base.$color-bg;
+}
 
 .PreferencesMenu {
   &__Antags {
@@ -140,27 +145,10 @@ $department_map: (
           border-right: 2px solid rgba(0, 0, 0, 0.3);
           color: black;
 
-          // PARIAH EDIT
           > * {
             height: calc(100% + 0.2em);
+            padding-bottom: 0.2em;
           }
-
-          .jobRow {
-            align-items: center;
-            justify-content: center;
-          }
-
-          .options .Button {
-            margin-right: 0.2em;
-            margin-top: 0.2em;
-          }
-
-          .options:last-child .Button {
-            margin-bottom: 0;
-            margin-right: 0.2em;
-            margin-top: 0.2em;
-          }
-          // PARIAH EDIT END
 
           &:first-child {
             border-top: 2px solid rgba(0, 0, 0, 0.3);
@@ -169,11 +157,6 @@ $department_map: (
           .options {
             background: rgba(0, 0, 0, 0.2);
             height: 100%;
-            // PARIAH EDIT
-            text-align: right;
-            align-items: center;
-            justify-content: center;
-            // PARIAH EDIT END
           }
         }
 
@@ -194,7 +177,7 @@ $department_map: (
         border: 1px solid rgba(0, 0, 0, 0.3);
 
         &--off::after {
-          content: "";
+          content: '';
 
           background: rgba(0, 0, 0, 0.2);
           display: block;
@@ -210,10 +193,7 @@ $department_map: (
 
     &__PriorityHeader {
       font-weight: bold;
-      transform:
-        translateX(-4px)
-        translateY(-8px)
-        rotate(315deg);
+      transform: translateX(-4px) translateY(-8px) rotate(315deg);
       white-space: nowrap;
       width: 19px;
     }
@@ -233,9 +213,9 @@ $department_map: (
         transition: background-color 0.1s ease-in;
 
         $quality_map: (
-          "positive": colors.$green,
-          "neutral": colors.$white,
-          "negative": colors.$red,
+          'positive': colors.$green,
+          'neutral': colors.$white,
+          'negative': colors.$red,
         );
 
         @each $quality, $color-value in $quality_map {
