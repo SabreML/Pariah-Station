@@ -24,10 +24,8 @@
 #pragma DanglingVarType error
 #pragma MissingInterpolatedExpression error
 #pragma AmbiguousResourcePath error
-#pragma SuspiciousSwitchCase error
 
 //3000-3999
 #pragma EmptyBlock notice
 #pragma EmptyProc disabled
 #pragma UnsafeClientAccess disabled
-#pragma AssignmentInConditional warning
