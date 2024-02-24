@@ -21,6 +21,6 @@ DreamDaemon pariah.dmb -close -trusted -verbose -params "log-directory=ci"
 cd ..
 
 mkdir -p data/screenshots_new
-cp -r ci_test/data/screenshots_new data/screenshots_new
+[[ -d ci_test/data/screenshots_new ]] && cp -r ci_test/data/screenshots_new data/screenshots_new
 
 cat ci_test/data/logs/ci/clean_run.lk
